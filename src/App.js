@@ -13,6 +13,7 @@ function App() {
       .then((data) => {
         const moviesList = data.results.map((movie) => {
           return {
+            id: movie.episode_id,
             titile: movie.titile,
             releaseDate: movie.release_date,
             openingText: movie.opening_crawl,
