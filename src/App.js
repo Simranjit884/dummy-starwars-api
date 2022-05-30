@@ -43,17 +43,24 @@ function App() {
   }, [fetchMovieHandler]);
 
   const addMovieHandler = async (movie) => {
-    const response = await fetch(
-      "https://react-http-32f2a-default-rtdb.firebaseio.com/movies.json",
-      {
-        method: "POST",
-        body: JSON.stringify(movie),
-        headers: {
-          "Content-type": "application/json",
-        },
+    try {
+      const response = await fetch(
+        "https://react-http-32f2a-default-rtdb.firebaseio.com/movies.json",
+        {
+          method: "POST",
+          body: JSON.stringify(movie),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!!");
       }
-    );
-    const data = await response.json();
+      fetchMovieHandler();
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   let content = <p>No movie found.</p>;
