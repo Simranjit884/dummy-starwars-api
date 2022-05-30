@@ -20,7 +20,6 @@ function App() {
         throw new Error("Something went Wrong!");
       }
       const data = await response.json();
-      console.log("response--", data);
       const loadedMovies = [];
       for (let key in data) {
         loadedMovies.push({
@@ -55,7 +54,6 @@ function App() {
       }
     );
     const data = await response.json();
-    console.log("post response---", data);
   };
 
   let content = <p>No movie found.</p>;
